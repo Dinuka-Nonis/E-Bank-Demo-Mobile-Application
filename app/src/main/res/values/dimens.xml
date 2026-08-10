@@ -19,4 +19,7 @@
 
     <dimen name="icon_badge_size">56dp</dimen>
     <dimen name="input_field_height">56dp</dimen>
+
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
 </resources>

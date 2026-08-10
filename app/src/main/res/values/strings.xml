@@ -3,4 +3,11 @@
     <string name="login_title">Welcome Back</string>
     <string name="login_subtitle">Log in to continue</string>
     <string name="login_email_label">Email or username</string>
+    <string name="Email_Hint">dinukanonis@gmail.com</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_forgot_password">Forgot password</string>
+    <string name="login_button">Log in</string>
+    <string name="login_divider_or">or</string>
+    <string name="login_google_button">Log in with Google</string>
+
 </resources>
