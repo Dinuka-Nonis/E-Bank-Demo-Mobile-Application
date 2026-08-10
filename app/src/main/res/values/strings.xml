@@ -9,5 +9,5 @@
     <string name="login_button">Log in</string>
     <string name="login_divider_or">or</string>
     <string name="login_google_button">Log in with Google</string>
-
+    <string name="login_faceid_button">Log in with Face ID</string>
 </resources>
