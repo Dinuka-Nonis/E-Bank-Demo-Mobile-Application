@@ -2,4 +2,25 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand blue -->
+    <color name="blue_primary">#3D7DDB</color>
+    <color name="blue_gradient_start">#4A90E2</color>
+    <color name="blue_gradient_end">#2E5FCF</color>
+
+    <!-- Text -->
+    <color name="text_dark">#1A1F36</color>
+    <color name="text_gray">#8A93A6</color>
+    <color name="text_gray_light">#B0B7C3</color>
+
+    <!-- Backgrounds -->
+    <color name="background_white">#FFFFFF</color>
+    <color name="surface_light_gray">#F1F3F7</color>
+    <color name="border_gray">#E6E9EF</color>
+    <color name="selected_dark">#1B2340</color>
+
+    <!-- Status colors -->
+    <color name="red_negative">#E5484D</color>
+    <color name="green_positive">#22A55E</color>
+    <color name="green_success">#2ECC71</color>
 </resources>
