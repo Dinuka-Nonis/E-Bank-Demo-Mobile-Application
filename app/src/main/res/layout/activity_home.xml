@@ -6,13 +6,499 @@
     android:layout_height="match_parent"
     android:background="@color/background_white">
 
+    <!-- Greeting -->
     <TextView
-        android:id="@+id/placeholder"
+        android:id="@+id/tvGreeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Dashboard Screen"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:text="@string/home_greeting"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_sm"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:text="@string/home_username"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/text_lg"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tvGreeting"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Notification bell -->
+    <ImageView
+        android:id="@+id/ivNotification"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="@dimen/spacing_sm"
+        android:background="@drawable/bg_circle_outline"
+        android:padding="10dp"
+        android:src="@drawable/ic_notification"
+        app:tint="@color/text_dark"
+        app:layout_constraintTop_toTopOf="@id/tvGreeting"
+        app:layout_constraintBottom_toBottomOf="@id/tvUserName"
+        app:layout_constraintEnd_toStartOf="@id/tvProfileInitials" />
+
+    <!-- Profile avatar -->
+    <TextView
+        android:id="@+id/tvProfileInitials"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:background="@drawable/bg_circle_avatar_blue"
+        android:gravity="center"
+        android:text="@string/home_profile_initials"
+        android:textColor="@color/background_white"
+        android:textSize="@dimen/text_sm"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/tvGreeting"
+        app:layout_constraintBottom_toBottomOf="@id/tvUserName"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Balance card -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardBalance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xl"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:background="@drawable/bg_card_balance"
+        android:paddingStart="@dimen/spacing_lg"
+        android:paddingEnd="@dimen/spacing_lg"
+        android:paddingTop="@dimen/spacing_lg"
+        android:paddingBottom="@dimen/spacing_lg"
+        app:layout_constraintTop_toBottomOf="@id/tvUserName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvBalanceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.85"
+            android:text="@string/home_balance_label"
+            android:textColor="@color/background_white"
+            android:textSize="@dimen/text_sm"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivCardIcon"
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:alpha="0.6"
+            android:src="@drawable/ic_card_mini"
+            app:tint="@color/background_white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBalanceAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="@string/home_balance_amount"
+            android:textColor="@color/background_white"
+            android:textSize="@dimen/text_xxl"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvBalanceLabel"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCardInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:alpha="0.85"
+            android:text="@string/home_card_info"
+            android:textColor="@color/background_white"
+            android:textSize="@dimen/text_xs"
+            app:layout_constraintTop_toBottomOf="@id/tvBalanceAmount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Quick actions -->
+    <LinearLayout
+        android:id="@+id/rowQuickActions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xl"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintTop_toBottomOf="@id/cardBalance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btnTransfer"
+                android:layout_width="@dimen/action_icon_size"
+                android:layout_height="@dimen/action_icon_size"
+                android:background="@drawable/bg_circle_icon_gray"
+                android:padding="16dp"
+                android:src="@drawable/ic_transfer"
+                app:tint="@color/text_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/home_action_transfer"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btnPayBills"
+                android:layout_width="@dimen/action_icon_size"
+                android:layout_height="@dimen/action_icon_size"
+                android:background="@drawable/bg_circle_icon_gray"
+                android:padding="16dp"
+                android:src="@drawable/ic_pay_bills"
+                app:tint="@color/text_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/home_action_paybills"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btnTopUp"
+                android:layout_width="@dimen/action_icon_size"
+                android:layout_height="@dimen/action_icon_size"
+                android:background="@drawable/bg_circle_icon_gray"
+                android:padding="16dp"
+                android:src="@drawable/ic_topup"
+                app:tint="@color/text_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/home_action_topup"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btnMore"
+                android:layout_width="@dimen/action_icon_size"
+                android:layout_height="@dimen/action_icon_size"
+                android:background="@drawable/bg_circle_icon_gray"
+                android:padding="16dp"
+                android:src="@drawable/ic_more"
+                app:tint="@color/text_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/home_action_more"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Recent transactions header -->
+    <TextView
+        android:id="@+id/tvRecentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xl"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:text="@string/home_recent_transactions"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/text_md"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/rowQuickActions"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSeeAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:text="@string/home_see_all"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_sm"
+        app:layout_constraintTop_toTopOf="@id/tvRecentTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvRecentTitle"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Transaction 1 -->
+    <LinearLayout
+        android:id="@+id/rowTransaction1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvRecentTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvAvatar1"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:background="@drawable/bg_circle_icon_gray"
+            android:gravity="center"
+            android:text="@string/home_txn1_initials"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_txn1_name"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_md"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_txn1_subtitle"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_txn1_amount"
+            android:textColor="@color/red_negative"
+            android:textSize="@dimen/text_md"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Transaction 2 -->
+    <LinearLayout
+        android:id="@+id/rowTransaction2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/rowTransaction1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvAvatar2"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:background="@drawable/bg_circle_icon_gray"
+            android:gravity="center"
+            android:text="@string/home_txn2_initials"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_txn2_name"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_md"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_txn2_subtitle"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_txn2_amount"
+            android:textColor="@color/green_positive"
+            android:textSize="@dimen/text_md"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Bottom nav divider -->
+    <View
+        android:id="@+id/dividerBottomNav"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/border_gray"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Bottom nav -->
+    <LinearLayout
+        android:id="@+id/bottomNavBar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/bottom_nav_height"
+        android:background="@color/background_white"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_nav_home"
+                app:tint="@color/blue_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/home_nav_home"
+                android:textColor="@color/blue_primary"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navTransfers"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_nav_transfers"
+                app:tint="@color/text_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/home_nav_transfers"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navCards"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_nav_cards"
+                app:tint="@color/text_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/home_nav_cards"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_nav_profile"
+                app:tint="@color/text_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/home_nav_profile"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

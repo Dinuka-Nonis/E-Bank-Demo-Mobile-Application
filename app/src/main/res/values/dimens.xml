@@ -16,10 +16,17 @@
     <dimen name="text_md">16sp</dimen>
     <dimen name="text_lg">20sp</dimen>
     <dimen name="text_xl">28sp</dimen>
+    <!-- new: balance amount sits between text_lg and text_xl -->
+    <dimen name="text_xxl">26sp</dimen>
 
     <dimen name="icon_badge_size">56dp</dimen>
     <dimen name="input_field_height">56dp</dimen>
 
     <dimen name="button_height">56dp</dimen>
     <dimen name="divider_height">1dp</dimen>
+
+    <!-- new: home dashboard -->
+    <dimen name="action_icon_size">56dp</dimen>
+    <dimen name="avatar_size">40dp</dimen>
+    <dimen name="bottom_nav_height">64dp</dimen>
 </resources>
