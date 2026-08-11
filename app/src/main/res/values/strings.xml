@@ -66,4 +66,32 @@
     <string name="plus_mark">+</string>
     <string name="currency">Rs.</string>
     <string name="_0_00">0.00</string>
+
+    <!-- Confirm transfer screen -->
+    <string name="confirm_title">Confirm transfer</string>
+    <string name="confirm_account_info">•••• 7729 • E Bank</string>
+
+    <string name="confirm_label_amount">Amount</string>
+    <string name="confirm_value_amount">Rs. 15,000.00</string>
+    <string name="confirm_label_fee">Fee</string>
+    <string name="confirm_value_fee">Rs. 0.00</string>
+    <string name="confirm_label_from">From</string>
+    <string name="confirm_value_from">•••• 4821</string>
+    <string name="confirm_label_date">Date</string>
+    <string name="confirm_value_date">Aug 10 2026</string>
+    <string name="confirm_label_total">Total</string>
+    <string name="confirm_value_total">Rs. 15,000.00</string>
+
+    <string name="confirm_edit_transfer">Edit transfer</string>
+    <string name="confirm_button_send">Confirm &amp; send</string>
+    <string name="confirm_button_cancel">Cancel</string>
+
+    <!-- Success screen -->
+    <string name="success_title">Transfer successful</string>
+    <string name="success_subtitle">Rs. 15,000.00 sent to Kasun Silva</string>
+    <string name="success_reference_label">Reference</string>
+    <string name="success_reference_value">TXN-260810-4417</string>
+    <string name="success_button_share">Share receipt</string>
+    <string name="success_button_done">Done</string>
+
 </resources>

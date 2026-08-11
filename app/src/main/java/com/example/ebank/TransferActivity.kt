@@ -1,6 +1,7 @@
 // TransferActivity.kt
 package com.example.ebank
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -23,9 +24,13 @@ class TransferActivity : AppCompatActivity() {
         // Back button: return to HomeActivity.
         // TransferActivity is always launched from HomeActivity, so it's
         // already on the back stack — finish() just pops back to it.
-        val btnBack = findViewById<View>(R.id.btn_back)
-        btnBack.setOnClickListener {
+        findViewById<View>(R.id.btn_back).setOnClickListener {
             finish()
+        }
+
+        // Review transfer -> Confirm transfer screen.
+        findViewById<View>(R.id.btn_review).setOnClickListener {
+            startActivity(Intent(this, ConfirmTransferActivity::class.java))
         }
     }
 }
