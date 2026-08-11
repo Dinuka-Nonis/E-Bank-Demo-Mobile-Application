@@ -1,6 +1,6 @@
-// HomeActivity.kt
 package com.example.ebank
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -19,5 +19,15 @@ class HomeActivity : AppCompatActivity() {
             view.updatePadding(top = bars.top, bottom = bars.bottom)
             insets
         }
+
+        val openTransfer = {
+            startActivity(Intent(this, TransferActivity::class.java))
+        }
+
+        // Quick action icon under the balance card
+        findViewById<View>(R.id.btnTransfer).setOnClickListener { openTransfer() }
+
+        // Bottom navigation bar "Transfers" tab
+        findViewById<View>(R.id.navTransfers).setOnClickListener { openTransfer() }
     }
 }

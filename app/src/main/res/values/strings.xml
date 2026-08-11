@@ -42,4 +42,28 @@
     <string name="home_nav_transfers">Transfers</string>
     <string name="home_nav_cards">Cards</string>
     <string name="home_nav_profile">Profile</string>
+
+    <!-- Transfer money screen -->
+    <string name="transfer_title">Transfer money</string>
+    <string name="transfer_recipient_label">Recipient</string>
+
+    <string name="transfer_recipient_kasun_name">Kasun</string>
+    <string name="transfer_recipient_priya_name">Priya</string>
+    <string name="transfer_recipient_ravindu_initials">RP</string>
+    <string name="transfer_recipient_ravindu_name">Ravindu</string>
+    <string name="transfer_add_new_label">New</string>
+
+    <string name="transfer_amount_label">Amount</string>
+    <string name="transfer_amount_value">15,000.00</string>
+    <string name="transfer_available_balance_prefix">Available balance: </string>
+
+    <string name="transfer_note_label">Note (optional)</string>
+    <string name="transfer_note_hint">Add a note</string>
+    <string name="transfer_note_default_text">Rent for August</string>
+
+    <string name="transfer_review_button">Review transfer</string>
+    <string name="backward_navigation">‹</string>
+    <string name="plus_mark">+</string>
+    <string name="currency">Rs.</string>
+    <string name="_0_00">0.00</string>
 </resources>
