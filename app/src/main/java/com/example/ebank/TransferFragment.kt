@@ -1,43 +1,49 @@
 package com.example.ebank
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.databinding.DataBindingUtil
-import com.example.ebank.databinding.ActivityTransferBinding
+import androidx.fragment.app.Fragment
+import com.example.ebank.databinding.FragmentTransferBinding
 
-class TransferActivity : AppCompatActivity() {
+class TransferFragment : Fragment() {
 
-    private lateinit var binding: ActivityTransferBinding
+    private var _binding: FragmentTransferBinding? = null
+    private val binding get() = _binding!!
 
-    // Falls back to DEFAULT_AVAILABLE_BALANCE if HomeActivity doesn't pass the real
-    // balance in via EXTRA_AVAILABLE_BALANCE. See the companion object below.
-    private var availableBalance: Double = DEFAULT_AVAILABLE_BALANCE
+    // TODO: wire this to the signed-in account's real balance; HomeActivity never actually
+    // passed EXTRA_AVAILABLE_BALANCE before, so this default is exactly what was in effect.
+    private val availableBalance: Double = DEFAULT_AVAILABLE_BALANCE
 
     private data class QuickRecipient(val account: String, val name: String)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_transfer)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentTransferBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        availableBalance = intent.getDoubleExtra(EXTRA_AVAILABLE_BALANCE, DEFAULT_AVAILABLE_BALANCE)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.rootHome) { view, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.rootHome) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(top = bars.top, bottom = bars.bottom)
+            v.updatePadding(top = bars.top, bottom = bars.bottom)
             insets
         }
 
         setupAmountFormatting()
 
-        // Kasun pre-selected by default, matching the original screen.
         selectRecipient(
             QuickRecipient(KASUN_ACCOUNT, getString(R.string.transfer_recipient_kasun_name)),
             binding.recipientKasun
@@ -59,9 +65,9 @@ class TransferActivity : AppCompatActivity() {
             binding.etRecipientAccount.requestFocus()
         }
 
-        // Back button doubles as Cancel.
+        // Back button doubles as Cancel -> returns to Dashboard via the back stack.
         binding.btnCancel.setOnClickListener {
-            finish()
+            requireActivity().supportFragmentManager.popBackStack()
         }
 
         binding.btnSubmit.setOnClickListener {
@@ -69,14 +75,7 @@ class TransferActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Live-formats the amount field with thousands separators (e.g. 1,500.00) as the user
-     * types, keeping the cursor in a natural spot. Also blocks a second decimal point and
-     * caps the fractional part at 2 digits.
-     */
     private fun setupAmountFormatting() {
-        // Reformat whatever the field starts with, so a preset value can never contain
-        // stray characters that would fail to parse later.
         binding.etAmount.setText(formatAmount(cleanAmountInput(binding.etAmount.text.toString())))
 
         binding.etAmount.addTextChangedListener(object : TextWatcher {
@@ -89,10 +88,6 @@ class TransferActivity : AppCompatActivity() {
                 if (isFormatting || editable == null) return
                 isFormatting = true
 
-                // Track cursor position relative to the END of the string. Grouping commas
-                // get inserted/removed to the left of the cursor as digit count changes, but
-                // the distance from the end stays stable, so this keeps typing/deleting feeling
-                // natural instead of jumping the cursor to the start or end.
                 val cursorFromEnd = editable.length - binding.etAmount.selectionStart
                 val cleaned = cleanAmountInput(editable.toString())
                 val formatted = formatAmount(cleaned)
@@ -107,7 +102,6 @@ class TransferActivity : AppCompatActivity() {
         })
     }
 
-    /** Strips everything except digits and a single decimal point, max 2 decimal digits. */
     private fun cleanAmountInput(input: String): String {
         val sb = StringBuilder()
         var decimalUsed = false
@@ -128,7 +122,6 @@ class TransferActivity : AppCompatActivity() {
         return cleaned
     }
 
-    /** Adds thousands separators to the integer part, e.g. "1500000.5" -> "1,500,000.5" */
     private fun formatAmount(cleaned: String): String {
         if (cleaned.isEmpty()) return cleaned
 
@@ -146,11 +139,11 @@ class TransferActivity : AppCompatActivity() {
         binding.etRecipientAccount.setText(recipient.account)
         binding.etRecipientName.setText(recipient.name)
         clearAvatarSelection()
-        tappedAvatar.background = ContextCompat.getDrawable(this, R.drawable.bg_avatar_selected)
+        tappedAvatar.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_avatar_selected)
     }
 
     private fun clearAvatarSelection() {
-        val default = ContextCompat.getDrawable(this, R.drawable.bg_avatar_default)
+        val default = ContextCompat.getDrawable(requireContext(), R.drawable.bg_avatar_default)
         binding.recipientKasun.background = default
         binding.recipientPriya.background = default
         binding.recipientRavindu.background = default
@@ -183,20 +176,16 @@ class TransferActivity : AppCompatActivity() {
         }
 
         val request = TransferRequest(account, name, amount, remarks)
+        (requireActivity() as MainActivity).showConfirmationFragment(request)
+    }
 
-        val intent = Intent(this, ConfirmTransferActivity::class.java)
-        intent.putExtra(EXTRA_TRANSFER_REQUEST, request)
-        startActivity(intent)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
-        const val EXTRA_TRANSFER_REQUEST = "extra_transfer_request"
-        const val EXTRA_AVAILABLE_BALANCE = "extra_available_balance"
-
-        // Fallback only, used if TransferActivity is ever launched without a real balance.
-        // Have HomeActivity pass the account's actual balance via EXTRA_AVAILABLE_BALANCE.
         private const val DEFAULT_AVAILABLE_BALANCE = 125000.00
-
         private const val KASUN_ACCOUNT = "8001234567"
         private const val PRIYA_ACCOUNT = "8009876543"
         private const val RAVINDU_ACCOUNT = "8005551212"

@@ -35,9 +35,9 @@ class SuccessActivity : AppCompatActivity() {
         }
 
         // Done: the transfer flow is complete, so clear Transfer/Confirm/Success
-        // off the stack and return to the existing HomeActivity instance.
+        // off the stack and return to the existing MainActivity instance.
         findViewById<View>(R.id.btn_done).setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }

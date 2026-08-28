@@ -17,9 +17,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".HomeActivity" android:exported="false" />
-        <activity android:name=".TransferActivity" android:exported="false" />
-        <activity android:name=".ConfirmTransferActivity" android:exported="false" />
+        <!-- Replaces HomeActivity, TransferActivity and ConfirmTransferActivity: those
+             screens are now DashboardFragment, TransferFragment and ConfirmationFragment,
+             all hosted here. -->
+        <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".SuccessActivity" android:exported="false" />
 
     </application>
