@@ -94,4 +94,9 @@
     <string name="success_button_share">Share receipt</string>
     <string name="success_button_done">Done</string>
 
+    <string name="transfer_recipient_account_label">Recipient account number</string>
+    <string name="transfer_recipient_account_hint">e.g. 8001234567</string>
+    <string name="transfer_recipient_name_label">Recipient name</string>
+    <string name="transfer_recipient_name_hint">Recipient name</string>
+
 </resources>

@@ -74,6 +74,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="@dimen/spacing_lg"
             android:background="@drawable/bg_card_balance"
             android:paddingStart="@dimen/spacing_lg"
