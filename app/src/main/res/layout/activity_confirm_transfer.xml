@@ -71,6 +71,7 @@
 
                 <!-- Recipient summary -->
                 <TextView
+                    android:id="@+id/tv_recipient_initials"
                     android:layout_width="@dimen/icon_badge_size"
                     android:layout_height="@dimen/icon_badge_size"
                     android:layout_gravity="center_horizontal"
@@ -84,6 +85,7 @@
                     tools:ignore="SpUsage" />
 
                 <TextView
+                    android:id="@+id/tv_recipient_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -93,6 +95,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_account_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -126,6 +129,7 @@
                             android:textSize="@dimen/text_sm" />
 
                         <TextView
+                            android:id="@+id/tv_amount_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/confirm_value_amount"
@@ -149,6 +153,7 @@
                             android:textSize="@dimen/text_sm" />
 
                         <TextView
+                            android:id="@+id/tv_fee_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/confirm_value_fee"
@@ -194,6 +199,7 @@
                             android:textSize="@dimen/text_sm" />
 
                         <TextView
+                            android:id="@+id/tv_date_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/confirm_value_date"
@@ -225,6 +231,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_total_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/confirm_value_total"
