@@ -1,9 +1,13 @@
 package com.example.ebank
 
+import android.Manifest
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -14,6 +18,12 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 
 class DashboardFragment : Fragment() {
+
+    // Lab 6: ask for POST_NOTIFICATIONS (Android 13+); start the reminder only if granted.
+    private val notificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (granted) startSessionReminder()
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +54,19 @@ class DashboardFragment : Fragment() {
         }
 
         setupRecentTransactions(view)
+
+        // Lab 6: reaching the Dashboard starts the session reminder.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            startSessionReminder()
+        }
+    }
+
+    private fun startSessionReminder() {
+        requireContext().startService(
+            Intent(requireContext(), SessionReminderService::class.java)
+        )
     }
 
     private fun setupRecentTransactions(view: View) {
