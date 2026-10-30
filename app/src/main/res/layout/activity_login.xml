@@ -227,5 +227,14 @@
 
         </LinearLayout>
 
+    <!-- Lab 7: the whole password form. Starts GONE; LoginActivity.showPasswordForm() reveals it
+         when biometrics are unavailable, cancelled or locked out. -->
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/passwordFormGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tvEmailLabel,etEmail,tvPasswordLabel,etPassword,ivTogglePassword,tvForgotPassword,btnLogin,tvOrDivider,dividerLineStart,dividerLineEnd" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
