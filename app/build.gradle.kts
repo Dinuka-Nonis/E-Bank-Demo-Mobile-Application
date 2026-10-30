@@ -51,4 +51,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.11.0")
     implementation("androidx.lifecycle:lifecycle-service:2.11.0")
     implementation("androidx.biometric:biometric:1.1.0")
+
+    androidTestImplementation("androidx.test:runner:1.6.1")
+    androidTestImplementation("androidx.test:rules:1.6.1")
 }
