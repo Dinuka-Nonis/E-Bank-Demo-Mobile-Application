@@ -2,15 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_white">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rootHome"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_white">
 
     <!-- Greeting -->
     <TextView
@@ -69,69 +64,69 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Balance card -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardBalance"
-            android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardBalance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:background="@drawable/bg_card_balance"
+        android:paddingStart="@dimen/spacing_lg"
+        android:paddingTop="@dimen/spacing_lg"
+        android:paddingEnd="@dimen/spacing_lg"
+        android:paddingBottom="@dimen/spacing_lg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+
+        <TextView
+            android:id="@+id/tvBalanceLabel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_lg"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="@dimen/spacing_lg"
-            android:background="@drawable/bg_card_balance"
-            android:paddingStart="@dimen/spacing_lg"
-            android:paddingTop="@dimen/spacing_lg"
-            android:paddingEnd="@dimen/spacing_lg"
-            android:paddingBottom="@dimen/spacing_lg"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:alpha="0.85"
+            android:text="@string/home_balance_label"
+            android:textColor="@color/background_white"
+            android:textSize="@dimen/text_sm"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvBalanceLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.85"
-                android:text="@string/home_balance_label"
-                android:textColor="@color/background_white"
-                android:textSize="@dimen/text_sm"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/ivCardIcon"
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:alpha="0.6"
+            android:src="@drawable/ic_card_mini"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/background_white" />
 
-            <ImageView
-                android:id="@+id/ivCardIcon"
-                android:layout_width="28dp"
-                android:layout_height="20dp"
-                android:alpha="0.6"
-                android:src="@drawable/ic_card_mini"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/background_white" />
+        <TextView
+            android:id="@+id/tvBalanceAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="@string/home_balance_amount"
+            android:textColor="@color/background_white"
+            android:textSize="@dimen/text_xxl"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBalanceLabel" />
 
-            <TextView
-                android:id="@+id/tvBalanceAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_xs"
-                android:text="@string/home_balance_amount"
-                android:textColor="@color/background_white"
-                android:textSize="@dimen/text_xxl"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvBalanceLabel" />
+        <TextView
+            android:id="@+id/tvCardInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:alpha="0.85"
+            android:text="@string/home_card_info"
+            android:textColor="@color/background_white"
+            android:textSize="@dimen/text_xs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBalanceAmount" />
 
-            <TextView
-                android:id="@+id/tvCardInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_md"
-                android:alpha="0.85"
-                android:text="@string/home_card_info"
-                android:textColor="@color/background_white"
-                android:textSize="@dimen/text_xs"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvBalanceAmount" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Quick actions -->
     <LinearLayout
@@ -268,6 +263,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_lg"
+        android:clickable="true"
+        android:focusable="true"
         android:text="@string/home_see_all"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/text_sm"
@@ -275,121 +272,18 @@
         app:layout_constraintBottom_toBottomOf="@id/tvRecentTitle"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Transaction 1 -->
-    <LinearLayout
-        android:id="@+id/rowTransaction1"
+    <!-- Recent transactions list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRecentTransactions"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_md"
         android:layout_marginStart="@dimen/spacing_lg"
         android:layout_marginEnd="@dimen/spacing_lg"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/tvRecentTitle"
+        app:layout_constraintBottom_toTopOf="@id/dividerBottomNav"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:id="@+id/tvAvatar1"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
-            android:background="@drawable/bg_circle_icon_gray"
-            android:gravity="center"
-            android:text="@string/home_txn1_initials"
-            android:textColor="@color/text_dark"
-            android:textSize="@dimen/text_sm"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_md"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_txn1_name"
-                android:textColor="@color/text_dark"
-                android:textSize="@dimen/text_md"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_txn1_subtitle"
-                android:textColor="@color/text_gray"
-                android:textSize="@dimen/text_xs" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_txn1_amount"
-            android:textColor="@color/red_negative"
-            android:textSize="@dimen/text_md"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <!-- Transaction 2 -->
-    <LinearLayout
-        android:id="@+id/rowTransaction2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_lg"
-        android:layout_marginStart="@dimen/spacing_lg"
-        android:layout_marginEnd="@dimen/spacing_lg"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/rowTransaction1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:id="@+id/tvAvatar2"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
-            android:background="@drawable/bg_circle_icon_gray"
-            android:gravity="center"
-            android:text="@string/home_txn2_initials"
-            android:textColor="@color/text_dark"
-            android:textSize="@dimen/text_sm"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_md"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_txn2_name"
-                android:textColor="@color/text_dark"
-                android:textSize="@dimen/text_md"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_txn2_subtitle"
-                android:textColor="@color/text_gray"
-                android:textSize="@dimen/text_xs" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_txn2_amount"
-            android:textColor="@color/green_positive"
-            android:textSize="@dimen/text_md"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Bottom nav divider -->
     <View
@@ -506,6 +400,5 @@
         </LinearLayout>
 
     </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

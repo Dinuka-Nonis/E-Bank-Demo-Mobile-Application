@@ -1,0 +1,4 @@
+- [x] Remove `kotlin("kapt")` from `app/build.gradle.kts` (Already done by user)
+- [x] Add `android.disallowKotlinSourceSets=false` to `gradle.properties`
+- [x] Verify Gradle Sync
+- [x] Verify build completion (Fixed pre-existing build errors)

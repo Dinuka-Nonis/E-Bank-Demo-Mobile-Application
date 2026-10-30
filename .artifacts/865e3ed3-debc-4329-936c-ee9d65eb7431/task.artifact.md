@@ -1,0 +1,6 @@
+- [x] Research existing implementation of Lab 5
+- [x] Modify `fragment_dashboard.xml` to remove stubs and add `RecyclerView`
+- [x] Update `DashboardFragment.kt` to fetch and display real transactions
+- [x] Verify `ConfirmationFragment.kt` saves data correctly
+- [x] Verify `HistoryFragment.kt` and `TransferHistoryAdapter.kt` functionality
+- [x] Final verification and walkthrough creation
