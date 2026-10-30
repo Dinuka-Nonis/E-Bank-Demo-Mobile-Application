@@ -185,21 +185,21 @@ class TransferFragment : Fragment() {
         val amountText = binding.etAmount.text.toString().trim()
         val remarks = binding.etRemarks.text.toString().trim()
 
-        if (account.isEmpty()) {
-            binding.etRecipientAccount.error = "Enter a recipient account number"
-            return
-        }
-        if (name.isEmpty()) {
-            binding.etRecipientName.error = "Enter a recipient name"
+        // Lab 8: the input rules live in TransferValidator (plain Kotlin, unit-tested).
+        val error = TransferValidator.validate(account, name, amountText)
+        if (error != null) {
+            // Work out which field the message belongs to so setError() still shows on it.
+            when {
+                account.isBlank() -> binding.etRecipientAccount.error = error
+                name.isBlank() -> binding.etRecipientName.error = error
+                else -> binding.etAmount.error = error
+            }
             return
         }
 
         // Strip the thousands-separator commas the formatter added before parsing to a Double.
-        val amount = amountText.replace(",", "").toDoubleOrNull()
-        if (amount == null || amount <= 0.0) {
-            binding.etAmount.error = "Enter a valid amount greater than 0"
-            return
-        }
+        val amount = amountText.replace(",", "").toDouble()
+        // The balance rule needs app state and a string resource, so it stays in the fragment.
         if (amount > availableBalance) {
             binding.etAmount.error = getString(R.string.transfer_error_insufficient_balance)
             return
