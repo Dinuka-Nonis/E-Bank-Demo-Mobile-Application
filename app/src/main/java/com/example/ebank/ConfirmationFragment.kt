@@ -1,5 +1,6 @@
 package com.example.ebank
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -55,6 +56,16 @@ class ConfirmationFragment : Fragment() {
             lifecycleScope.launch {
                 AppDatabase.getInstance(requireContext()).transferDao().insert(transferRequest)
             }
+
+            // Lab 6: remember the last recipient so TransferFragment can pre-fill the form.
+            val prefs = requireContext().getSharedPreferences(
+                PREFS_NAME, Context.MODE_PRIVATE
+            )
+            prefs.edit()
+                .putString(KEY_LAST_RECIPIENT_ACCOUNT, transferRequest.recipientAccount)
+                .putString(KEY_LAST_RECIPIENT_NAME, transferRequest.recipientName)
+                .apply()
+
             startActivity(Intent(requireContext(), SuccessActivity::class.java))
             (requireActivity() as MainActivity).showDashboardFragment()
         }
@@ -101,6 +112,9 @@ class ConfirmationFragment : Fragment() {
 
     companion object {
         const val ARG_TRANSFER_REQUEST = "transfer_request"
+        const val PREFS_NAME = "banking_app_prefs"
+        const val KEY_LAST_RECIPIENT_ACCOUNT = "last_recipient_account"
+        const val KEY_LAST_RECIPIENT_NAME = "last_recipient_name"
         private const val FLAT_FEE = 0.00
         private val DATE_FORMAT = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
     }

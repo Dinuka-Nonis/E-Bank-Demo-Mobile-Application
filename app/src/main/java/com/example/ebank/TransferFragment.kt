@@ -1,5 +1,6 @@
 package com.example.ebank
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -73,6 +74,35 @@ class TransferFragment : Fragment() {
         binding.btnSubmit.setOnClickListener {
             onSubmitTransfer()
         }
+
+        prefillLastRecipient()
+    }
+
+    /**
+     * Lab 6: read the last confirmed recipient back from SharedPreferences and pre-fill the form.
+     * Runs after the default Kasun selection above, so it overrides it only when a saved
+     * recipient exists (first launch keeps the default).
+     */
+    private fun prefillLastRecipient() {
+        val prefs = requireContext().getSharedPreferences(
+            ConfirmationFragment.PREFS_NAME, Context.MODE_PRIVATE
+        )
+        val account = prefs.getString(ConfirmationFragment.KEY_LAST_RECIPIENT_ACCOUNT, "").orEmpty()
+        val name = prefs.getString(ConfirmationFragment.KEY_LAST_RECIPIENT_NAME, "").orEmpty()
+        if (account.isEmpty() || name.isEmpty()) return
+
+        binding.etRecipientAccount.setText(account)
+        binding.etRecipientName.setText(name)
+
+        // Keep the avatar highlight in sync when the saved recipient is one of the quick contacts.
+        clearAvatarSelection()
+        val avatar = when (account) {
+            KASUN_ACCOUNT -> binding.recipientKasun
+            PRIYA_ACCOUNT -> binding.recipientPriya
+            RAVINDU_ACCOUNT -> binding.recipientRavindu
+            else -> null
+        }
+        avatar?.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_avatar_selected)
     }
 
     private fun setupAmountFormatting() {
